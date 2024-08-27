@@ -1,0 +1,126 @@
+lio_sam:
+  # Topics
+  pointCloudTopic: "rslidar_points"               # Point cloud data
+  imuTopic: "imu_raw"                         # IMU data
+  odomTopic: "odometry/imu"                   # IMU pre-preintegration odometry, same frequency as IMU
+
+  # Frames
+  lidarFrame: "base_link"
+  baselinkFrame: "base_link"
+  odometryFrame: "odom"
+  mapFrame: "map"
+
+  # Sensor Settings
+  sensor: rslidar                            # lidar sensor type, 'velodyne' or 'ouster' or 'livox'
+  N_SCAN: 32                                  # number of lidar channel (i.e., Velodyne/Ouster: 16, 32, 64, 128, Livox Horizon: 6)
+  Horizon_SCAN: 2028
+  downsampleRate: 1                           # default: 1. Downsample your data if too many points. i.e., 16 = 64 / 4, 16 = 16 / 1
+  lidarMinRange: 1.0                          # default: 1.0, minimum lidar range to be used
+  lidarMaxRange: 1000.0                       # default: 1000.0, maximum lidar range to be used
+  m_cfg_vec_f_ring_angle_pattern : [ -25.000, -14.638, -10.281, -7.910, -6.424, -5.407, -4.667, -4.333,
+                                -4.000, -3.667, -3.333, -3.000, -2.667, -2.333, -2.000, -1.667, 
+                                -1.333, -1.000, -0.667, -0.333, 0.000, 0.333, 0.667, 1.000,
+                                 1.333, 1.667, 2.333, 3.333, 4.667, 7.000, 10.333, 15.000] # UrbanLoco RS-32
+
+  # IMU Settings
+  imuAccNoise: 3.9939570888238808e-03
+  imuGyrNoise: 1.5636343949698187e-03
+  imuAccBiasN: 6.4356659353532566e-05
+  imuGyrBiasN: 3.5640318696367613e-05
+  imuGravity: 9.80511
+  imuRPYWeight: 0.01
+
+  # Extrinsics: T_lb (lidar -> imu)
+  extrinsicTrans: [0.0, 0.0, 7.62e-02]
+  extrinsicRot: [1, 0, 0,
+                  0, 1, 0,
+                  0, 0, 1]
+  extrinsicRPY: [1, 0, 0,
+                  0, 1, 0,
+                  0, 0, 1]
+
+  # LOAM feature threshold
+  edgeThreshold: 1.0
+  edgeFeatureMinValidNum: 10
+  surfFeatureMinValidNum: 100
+
+  # voxel filter paprams
+  odometrySurfLeafSize: 0.4                     # default: 0.4 - outdoor, 0.2 - indoor
+  mappingCornerLeafSize: 0.2                    # default: 0.2 - outdoor, 0.1 - indoor
+  mappingSurfLeafSize: 0.4                      # default: 0.4 - outdoor, 0.2 - indoor
+
+  # robot motion constraint (in case you are using a 2D robot)
+  z_tollerance: 1000                            # meters
+  rotation_tollerance: 1000                     # radians
+
+  # Surrounding map
+  surroundingKeyframeSearchRadius: 20.0         # meters, within n meters scan-to-map optimization (when loop closure disabled)
+  surroundingKeyframeMaxNum: 9
+
+awv_mos:
+  # - Topic namespace
+  m_cfg_s_output_pc_namespace: "/awv_mos"
+
+  # - LiDAR characteristic params
+  m_cfg_f_lidar_horizontal_resolution_deg: 0.18 # RS-32
+  m_cfg_f_lidar_vertical_resolution_deg: 0.3333 # RS-32(least)
+  m_cfg_f_lidar_vertical_fov_upper_bound_deg: 15.0 # RS-32
+  m_cfg_f_lidar_vertical_fov_lower_bound_deg: -25.0
+
+  # - Prior MOS update option
+  m_cfg_b_use_prior_mos: true
+  m_cfg_f_imu_odom_trans_err_std_m: 0.1
+  m_cfg_f_imu_odom_rot_err_std_rad: 0.01
+
+  # - Reference frame params
+  m_cfg_f_keyframe_translation_threshold_m: 2.0
+  m_cfg_f_keyframe_rotation_threshold_rad: 0.1
+  m_cfg_f_keyframe_time_threshold_s: 3.0  
+  m_cfg_b_use_ref_frame_instant_charge: true
+  m_cfg_n_mos_ref_frame_size: 18
+
+  # - Point-to-window comparision params
+  m_cfg_f_meas_range_std_m: 0.02
+  m_cfg_f_meas_theta_std_rad: 0.0015
+  m_cfg_f_meas_phi_std_rad: 0.0015
+  m_cfg_f_scan_matching_trans_err_std_m: 0.03
+  m_cfg_f_scan_matching_rot_err_std_rad: 0.004  
+  m_cfg_f_range_image_observation_window_u_angle_deg_min: 0.35
+  m_cfg_f_range_image_observation_window_u_angle_deg_max: 1.7
+  m_cfg_f_range_image_observation_window_v_angle_deg_min: 0.7
+  m_cfg_f_range_image_observation_window_v_angle_deg_max: 1.2
+  m_cfg_f_range_image_z_correction: 0.0
+  m_cfg_f_range_image_min_dist_m: 3.0
+  m_cfg_f_range_image_min_height_m: -3
+  m_cfg_b_use_range_image_noise_filtering: false
+  m_cfg_f_range_image_noise_filtering_min_diff_m: 1.0
+
+  # - Motion belief calculation params
+  m_cfg_f_moving_confidence: 0.35
+  m_cfg_f_static_confidence: 0.5
+
+  # - Object Scale Test params
+  m_cfg_b_use_object_scale_test: true
+  m_cfg_f_object_scale_test_valid_visible_range_m: 7.0
+  m_cfg_f_object_scale_test_min_height_m: 0.2
+  m_cfg_f_object_scale_test_min_visible_area_m2: 0.25
+  m_cfg_f_object_scale_test_point_search_radius_m: 2.0
+
+  # - Resgion Growing params
+  m_cfg_b_use_region_growing: false
+  m_cfg_f_region_growing_voxel_leaf_size_m: 0.15
+  m_cfg_f_region_growing_max_iteration: 30
+  m_cfg_f_region_growing_point_search_radius_m: 0.15
+  m_cfg_f_region_growing_ground_filter_height_m: 0.06
+
+  # - Scan maching weight param
+  m_cfg_f_static_weight_ratio: 100.0
+
+  # - ROS msg publish params 
+  m_cfg_b_publish_pc: true
+
+  # - CPU Params
+  m_cfg_n_num_cpu_cores: 24
+
+  # - Prediction write
+  m_cfg_b_use_prediction_write: false

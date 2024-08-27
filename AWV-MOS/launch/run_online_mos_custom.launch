@@ -1,0 +1,19 @@
+<launch>
+    <arg name="sequence" default="custom" />
+    <arg name="m_config_file_path" default="$(find awv_mos)/config/params_custom.yaml"/>
+    <arg name="scan_topic" default="" />
+    <arg name="odom_topic" default="" />
+
+    <!-- Parameters -->
+    <param name="m_config_file_path" value="$(arg m_config_file_path)" />
+    <param name="m_log_write_path" value="$(find awv_mos)/history/log/" />
+    <param name="prediction_write_path" value="$(find awv_mos)/history/predictions/nuscenes/sequences/$(arg sequence)/predictions/" />
+    <param name="scan_topic" value="$(arg scan_topic)" />
+    <param name="odom_topic" value="$(arg odom_topic)" />
+    <rosparam file="$(arg m_config_file_path)" command="load" />
+
+    <!-- AWV-MOS online mos -->
+    <node pkg="awv_mos" type="run_online_mos"      name="run_online_mos"       output="screen"     respawn="false"/>
+
+    <node pkg="rviz" type="rviz" name="awv_mos_rviz" output="log" args="-d $(find awv_mos)/config/rviz/scan_view_nuscenes.rviz" />
+</launch>

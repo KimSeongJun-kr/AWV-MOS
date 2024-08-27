@@ -1,0 +1,22 @@
+<launch>
+    <arg name="sequence" default="00" />
+    <arg name="m_config_file_path" default="$(find awv_mos)/config/params_nuscenes.yaml"/>
+    <arg name="scan_topic" default="/LIDAR_TOP" />
+    <arg name="odom_topic" default="/aft_mapped_to_init" />
+
+    <!-- Parameters -->
+    <param name="m_config_file_path" value="$(arg m_config_file_path)" />
+    <param name="m_log_write_path" value="$(find awv_mos)/history/log/" />
+    <param name="prediction_write_path" value="$(find awv_mos)/history/predictions/nuscenes/sequences/$(arg sequence)/predictions/" />
+    <param name="scan_topic" value="$(arg scan_topic)" />
+    <param name="odom_topic" value="$(arg odom_topic)" />
+    <rosparam file="$(arg m_config_file_path)" command="load" />
+
+    <!-- AWV-MOS online mos -->
+    <node pkg="awv_mos" type="run_online_mos"      name="run_online_mos"       output="screen"     respawn="false"/>
+
+    <!-- FAST-LIO2 -->
+    <include file="$(find fast_lio)/launch/mapping_nuscenes.launch" />
+
+    <node pkg="rviz" type="rviz" name="awv_mos_rviz" output="log" args="-d $(find awv_mos)/config/rviz/scan_view_nuscenes.rviz" />
+</launch>
