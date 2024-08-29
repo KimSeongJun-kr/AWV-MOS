@@ -1,0 +1,29 @@
+<launch>
+    <arg name="use_bag_file" default="true" />
+    <arg name="bag_file_path" default="path/to/your/bagfile" />
+    <arg name="scan_topic" default="your/scan/topic" />
+    <arg name="pose_topic" default="your/odom/topic" />
+    <arg name="config_file_name" default="your_config_file_name.yaml"/>
+    <arg name="use_deskewing" default="false" />
+    <arg name="calib_file_path" default="" />
+
+    <arg name="m_config_file_path" default="$(find awv_mos)/config/$(arg config_file_name)"/>
+    <!-- Parameters -->
+    <param name="use_bag_file" value="$(arg use_bag_file)" />
+    <param name="bag_file_path" value="$(arg bag_file_path)" />
+    <param name="bag_file_path" value="$(arg bag_file_path)" />
+    <param name="scan_topic" value="$(arg scan_topic)" />
+    <param name="pose_topic" value="$(arg pose_topic)" />
+    <param name="calib_file_path" value="$(arg calib_file_path)" />
+    <param name="use_deskewing" value="$(arg use_deskewing)" />
+    <param name="prediction_write_path" value="$(find awv_mos)/history/predictions/static_mapping/bag/predictions/" />
+    <param name="map_save_path" value="$(find awv_mos)/history/maps/bag/" />
+    <param name="m_config_file_path" value="$(arg m_config_file_path)" />
+    <param name="m_log_write_folder_path" value="$(find awv_mos)/history/log/"/>
+    <rosparam file="$(arg m_config_file_path)" command="load" />
+
+    <!-- AWV-MOS static mapping -->
+    <node pkg="awv_mos" type="run_static_mapping" name="run_static_mapping" output="screen" respawn="false"/>
+
+    <node pkg="rviz" type="rviz" name="awv_mos_rviz" args="-d $(find awv_mos)/config/rviz/scan_view.rviz" />
+</launch>

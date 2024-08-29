@@ -1,0 +1,6 @@
+libeigen3-dev=3.3.7-2
+libgtsam-dev=4.0.3-1ubuntu1
+libgtsam-unstable-dev=4.0.3-1ubuntu1
+libopencv-dev=4.2.0+dfsg-5
+libpcl-dev=1.10.0+dfsg-5ubuntu1
+libtbb-dev:amd64=2020.1-2

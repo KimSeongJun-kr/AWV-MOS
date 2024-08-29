@@ -1,0 +1,56 @@
+awv_mos:
+  # - Topic namespace
+  m_cfg_s_output_pc_namespace: "/awv_mos"
+
+  # - LiDAR characteristic params
+  m_cfg_f_lidar_horizontal_resolution_deg: 0.3333 # HDL-32
+  m_cfg_f_lidar_vertical_resolution_deg: 1.25
+  m_cfg_f_lidar_vertical_fov_upper_bound_deg: 10.0
+  m_cfg_f_lidar_vertical_fov_lower_bound_deg: -30.0
+
+  # - Prior MOS update option
+  m_cfg_b_use_prior_mos: true
+  m_cfg_f_imu_odom_trans_err_std_m: 0.1
+  m_cfg_f_imu_odom_rot_err_std_rad: 0.01
+
+  # - Reference frame params
+  m_cfg_f_keyframe_translation_threshold_m: 2.0
+  m_cfg_f_keyframe_rotation_threshold_rad: 0.1
+  m_cfg_f_keyframe_time_threshold_s: 2.0  
+  m_cfg_b_use_ref_frame_instant_charge: true
+  m_cfg_n_mos_ref_frame_size: 9
+
+  # - Point-to-window comparision params
+  m_cfg_f_range_image_observation_window_u_angle_deg_min: 0.7
+  m_cfg_f_range_image_observation_window_u_angle_deg_max: 1.7
+  m_cfg_f_range_image_observation_window_v_angle_deg_min: 2.5
+  m_cfg_f_range_image_observation_window_v_angle_deg_max: 4.5
+  m_cfg_f_range_image_z_correction: -0.3
+  m_cfg_f_range_image_min_dist_m: 3.0
+  m_cfg_f_range_image_min_height_m: -3.0
+  m_cfg_b_use_range_image_noise_filtering: false
+  m_cfg_f_range_image_noise_filtering_min_diff_m: 1.0
+
+  # - Motion belief calculation params
+  m_cfg_f_moving_confidence: 0.35
+  m_cfg_f_static_confidence: 0.5
+
+  # - Object Scale Test params
+  m_cfg_b_use_object_scale_test: true
+  m_cfg_f_object_scale_test_valid_visible_range_m: 0.0
+  m_cfg_f_object_scale_test_min_height_m: 0.25
+  m_cfg_f_object_scale_test_min_visible_area_m2: 0.17 
+  m_cfg_f_object_scale_test_point_search_radius_m: 2.0
+
+  # - Resgion Growing params
+  m_cfg_b_use_region_growing: false
+  m_cfg_f_region_growing_voxel_leaf_size_m: 0.15
+  m_cfg_f_region_growing_max_iteration: 30
+  m_cfg_f_region_growing_point_search_radius_m: 0.15
+  m_cfg_f_region_growing_ground_filter_height_m: 0.06
+
+  # - ROS msg publish params 
+  m_cfg_b_publish_pc: true
+
+  # - CPU Params
+  m_cfg_n_num_cpu_cores: 0      # 0: use all cores

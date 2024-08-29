@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='utf-8'?>
+<lasers>
+    <laser id="0">
+        <yaw_rotation_deg>-1.846126</yaw_rotation_deg>
+        <pitch_rotation_deg>-24.99643077</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.4662916</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11607575</beam_line_coefficient_b>
+    </laser>
+    <laser id="1">
+        <yaw_rotation_deg>1.0033390000000004</yaw_rotation_deg>
+        <pitch_rotation_deg>-24.50489493</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.45588382</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11636521</beam_line_coefficient_b>
+    </laser>
+    <laser id="2">
+        <yaw_rotation_deg>4.719219000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-23.96891931</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.44468862</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11685613</beam_line_coefficient_b>
+    </laser>
+    <laser id="3">
+        <yaw_rotation_deg>7.741967000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-23.32080597</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.43113905</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11695992</beam_line_coefficient_b>
+    </laser>
+    <laser id="4">
+        <yaw_rotation_deg>-7.19849</yaw_rotation_deg>
+        <pitch_rotation_deg>-22.85523958</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.42148687</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11698338</beam_line_coefficient_b>
+    </laser>
+    <laser id="5">
+        <yaw_rotation_deg>-4.002459</yaw_rotation_deg>
+        <pitch_rotation_deg>-22.43676728</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.41293871</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.1173886</beam_line_coefficient_b>
+    </laser>
+    <laser id="6">
+        <yaw_rotation_deg>-0.8064280000000004</yaw_rotation_deg>
+        <pitch_rotation_deg>-21.93468686</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.40275982</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11782743</beam_line_coefficient_b>
+    </laser>
+    <laser id="7">
+        <yaw_rotation_deg>2.389603000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-21.31759598</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.39024101</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11793593</beam_line_coefficient_b>
+    </laser>
+    <laser id="8">
+        <yaw_rotation_deg>5.758917</yaw_rotation_deg>
+        <pitch_rotation_deg>-20.7872866</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.37958418</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11807936</beam_line_coefficient_b>
+    </laser>
+    <laser id="9">
+        <yaw_rotation_deg>8.781665</yaw_rotation_deg>
+        <pitch_rotation_deg>-20.22231341</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.36837729</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11857342</beam_line_coefficient_b>
+    </laser>
+    <laser id="10">
+        <yaw_rotation_deg>-7.19849</yaw_rotation_deg>
+        <pitch_rotation_deg>-19.73611558</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.35872855</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11862315</beam_line_coefficient_b>
+    </laser>
+    <laser id="11">
+        <yaw_rotation_deg>-5.042157</yaw_rotation_deg>
+        <pitch_rotation_deg>-19.32003729</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.35058248</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11901295</beam_line_coefficient_b>
+    </laser>
+    <laser id="12">
+        <yaw_rotation_deg>-1.846126</yaw_rotation_deg>
+        <pitch_rotation_deg>-18.79679718</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.34037097</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11936697</beam_line_coefficient_b>
+    </laser>
+    <laser id="13">
+        <yaw_rotation_deg>1.0033390000000004</yaw_rotation_deg>
+        <pitch_rotation_deg>-18.32315059</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.33116567</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11960728</beam_line_coefficient_b>
+    </laser>
+    <laser id="14">
+        <yaw_rotation_deg>4.719219000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-17.73003243</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.31972096</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.11994942</beam_line_coefficient_b>
+    </laser>
+    <laser id="15">
+        <yaw_rotation_deg>7.741967000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-17.18640201</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.3093192</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12041471</beam_line_coefficient_b>
+    </laser>
+    <laser id="16">
+        <yaw_rotation_deg>-7.19849</yaw_rotation_deg>
+        <pitch_rotation_deg>-16.55348332</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.2972407</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12068584</beam_line_coefficient_b>
+    </laser>
+    <laser id="17">
+        <yaw_rotation_deg>-4.002459</yaw_rotation_deg>
+        <pitch_rotation_deg>-16.17599969</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.2900808</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12088694</beam_line_coefficient_b>
+    </laser>
+    <laser id="18">
+        <yaw_rotation_deg>-0.8064280000000004</yaw_rotation_deg>
+        <pitch_rotation_deg>-15.65587837</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.28027718</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12126462</beam_line_coefficient_b>
+    </laser>
+    <laser id="19">
+        <yaw_rotation_deg>2.389603000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-15.18764436</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.27148726</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12156385</beam_line_coefficient_b>
+    </laser>
+    <laser id="20">
+        <yaw_rotation_deg>5.758917</yaw_rotation_deg>
+        <pitch_rotation_deg>-14.59669978</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.26039853</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12155359</beam_line_coefficient_b>
+    </laser>
+    <laser id="21">
+        <yaw_rotation_deg>8.781665</yaw_rotation_deg>
+        <pitch_rotation_deg>-14.04666475</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.25020006</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12207571</beam_line_coefficient_b>
+    </laser>
+    <laser id="22">
+        <yaw_rotation_deg>-8.93132</yaw_rotation_deg>
+        <pitch_rotation_deg>-13.48279939</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.23979826</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12263122</beam_line_coefficient_b>
+    </laser>
+    <laser id="23">
+        <yaw_rotation_deg>-5.215439999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-13.03871697</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.23162869</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12297969</beam_line_coefficient_b>
+    </laser>
+    <laser id="24">
+        <yaw_rotation_deg>-2.0194089999999996</yaw_rotation_deg>
+        <pitch_rotation_deg>-12.55950578</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.2228354</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12328903</beam_line_coefficient_b>
+    </laser>
+    <laser id="25">
+        <yaw_rotation_deg>0.8300560000000008</yaw_rotation_deg>
+        <pitch_rotation_deg>-12.11215502</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.21466162</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12361987</beam_line_coefficient_b>
+    </laser>
+    <laser id="26">
+        <yaw_rotation_deg>4.545936000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-11.59579458</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.20525166</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.123923</beam_line_coefficient_b>
+    </laser>
+    <laser id="27">
+        <yaw_rotation_deg>7.568684000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-10.95334147</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.1936002</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12437791</beam_line_coefficient_b>
+    </laser>
+    <laser id="28">
+        <yaw_rotation_deg>-7.19849</yaw_rotation_deg>
+        <pitch_rotation_deg>-10.46681387</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.18481689</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12481267</beam_line_coefficient_b>
+    </laser>
+    <laser id="29">
+        <yaw_rotation_deg>-4.002458999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-10.05830313</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.17745202</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12505807</beam_line_coefficient_b>
+    </laser>
+    <laser id="30">
+        <yaw_rotation_deg>-0.8064279999999986</yaw_rotation_deg>
+        <pitch_rotation_deg>-9.56904755</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.16866274</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12542017</beam_line_coefficient_b>
+    </laser>
+    <laser id="31">
+        <yaw_rotation_deg>2.389603000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-9.02125737</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.15885102</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.12584601</beam_line_coefficient_b>
+    </laser>
+    <laser id="32">
+        <yaw_rotation_deg>-1.442035999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-8.68719783</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.15322794</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19787604</beam_line_coefficient_b>
+    </laser>
+    <laser id="33">
+        <yaw_rotation_deg>0.637360000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-8.28769012</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.14606987</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19813962</beam_line_coefficient_b>
+    </laser>
+    <laser id="34">
+        <yaw_rotation_deg>2.716756</yaw_rotation_deg>
+        <pitch_rotation_deg>-8.03615011</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.14157299</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19833529</beam_line_coefficient_b>
+    </laser>
+    <laser id="35">
+        <yaw_rotation_deg>4.796152000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-7.65821079</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.13483011</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19869456</beam_line_coefficient_b>
+    </laser>
+    <laser id="36">
+        <yaw_rotation_deg>-4.734412999999998</yaw_rotation_deg>
+        <pitch_rotation_deg>-7.26781848</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.12787932</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.1990099</beam_line_coefficient_b>
+    </laser>
+    <laser id="37">
+        <yaw_rotation_deg>-2.655016999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-6.98027798</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.12276597</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.199195</beam_line_coefficient_b>
+    </laser>
+    <laser id="38">
+        <yaw_rotation_deg>-0.575620999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-6.65778569</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.11704331</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19950006</beam_line_coefficient_b>
+    </laser>
+    <laser id="39">
+        <yaw_rotation_deg>1.503775000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-6.31182811</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.11091147</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.19981732</beam_line_coefficient_b>
+    </laser>
+    <laser id="40">
+        <yaw_rotation_deg>3.583171</yaw_rotation_deg>
+        <pitch_rotation_deg>-5.94195725</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.10437067</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20016618</beam_line_coefficient_b>
+    </laser>
+    <laser id="41">
+        <yaw_rotation_deg>5.662567000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-5.59492792</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.098237</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20046241</beam_line_coefficient_b>
+    </laser>
+    <laser id="42">
+        <yaw_rotation_deg>-5.600827999999998</yaw_rotation_deg>
+        <pitch_rotation_deg>-5.23603021</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.09190097</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20080538</beam_line_coefficient_b>
+    </laser>
+    <laser id="43">
+        <yaw_rotation_deg>-3.521431999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-4.89952006</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.08597338</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20115382</beam_line_coefficient_b>
+    </laser>
+    <laser id="44">
+        <yaw_rotation_deg>-1.442035999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-4.57443992</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.0802485</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20144328</beam_line_coefficient_b>
+    </laser>
+    <laser id="45">
+        <yaw_rotation_deg>0.637360000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-4.20205371</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.07370745</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.2018283</beam_line_coefficient_b>
+    </laser>
+    <laser id="46">
+        <yaw_rotation_deg>2.716756</yaw_rotation_deg>
+        <pitch_rotation_deg>-3.92281143</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.06880181</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20210578</beam_line_coefficient_b>
+    </laser>
+    <laser id="47">
+        <yaw_rotation_deg>4.796152000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-3.5267134</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.06185092</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20248039</beam_line_coefficient_b>
+    </laser>
+    <laser id="48">
+        <yaw_rotation_deg>-3.521431999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-3.22347063</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.0565358</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20280049</beam_line_coefficient_b>
+    </laser>
+    <laser id="49">
+        <yaw_rotation_deg>-1.7886019999999991</yaw_rotation_deg>
+        <pitch_rotation_deg>-2.86159823</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.05019986</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.2032176</beam_line_coefficient_b>
+    </laser>
+    <laser id="50">
+        <yaw_rotation_deg>-0.05577199999999927</yaw_rotation_deg>
+        <pitch_rotation_deg>-2.53439711</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.04447611</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20355791</beam_line_coefficient_b>
+    </laser>
+    <laser id="51">
+        <yaw_rotation_deg>1.6770580000000006</yaw_rotation_deg>
+        <pitch_rotation_deg>-2.19549162</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.03854868</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20396942</beam_line_coefficient_b>
+    </laser>
+    <laser id="52">
+        <yaw_rotation_deg>3.4098880000000005</yaw_rotation_deg>
+        <pitch_rotation_deg>-1.82125341</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.03200674</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20436702</beam_line_coefficient_b>
+    </laser>
+    <laser id="53">
+        <yaw_rotation_deg>5.662567000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>-1.48192671</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.02607947</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20478219</beam_line_coefficient_b>
+    </laser>
+    <laser id="54">
+        <yaw_rotation_deg>-5.254261999999999</yaw_rotation_deg>
+        <pitch_rotation_deg>-1.18930157</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.02096878</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20511577</beam_line_coefficient_b>
+    </laser>
+    <laser id="55">
+        <yaw_rotation_deg>-3.1748659999999997</yaw_rotation_deg>
+        <pitch_rotation_deg>-0.79084759</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.01401879</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20559058</beam_line_coefficient_b>
+    </laser>
+    <laser id="56">
+        <yaw_rotation_deg>-1.0954699999999997</yaw_rotation_deg>
+        <pitch_rotation_deg>-0.43970068</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.00788667</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20603903</beam_line_coefficient_b>
+    </laser>
+    <laser id="57">
+        <yaw_rotation_deg>0.9839260000000003</yaw_rotation_deg>
+        <pitch_rotation_deg>-0.07644313</pitch_rotation_deg>
+        <beam_line_coefficient_a>-0.00154886</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20645004</beam_line_coefficient_b>
+    </laser>
+    <laser id="58">
+        <yaw_rotation_deg>3.0633219999999994</yaw_rotation_deg>
+        <pitch_rotation_deg>0.1928848</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.00315278</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.2067955</beam_line_coefficient_b>
+    </laser>
+    <laser id="59">
+        <yaw_rotation_deg>5.142718</yaw_rotation_deg>
+        <pitch_rotation_deg>0.59143395</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.01010191</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20732802</beam_line_coefficient_b>
+    </laser>
+    <laser id="60">
+        <yaw_rotation_deg>-4.888282999999998</yaw_rotation_deg>
+        <pitch_rotation_deg>0.88397285</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.01521284</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20768902</beam_line_coefficient_b>
+    </laser>
+    <laser id="61">
+        <yaw_rotation_deg>-2.4623209999999984</yaw_rotation_deg>
+        <pitch_rotation_deg>1.31775989</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.022776</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20826113</beam_line_coefficient_b>
+    </laser>
+    <laser id="62">
+        <yaw_rotation_deg>-0.03635899999999914</yaw_rotation_deg>
+        <pitch_rotation_deg>1.58700181</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.02747758</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.2086272</beam_line_coefficient_b>
+    </laser>
+    <laser id="63">
+        <yaw_rotation_deg>2.389603000000001</yaw_rotation_deg>
+        <pitch_rotation_deg>1.95019198</pitch_rotation_deg>
+        <beam_line_coefficient_a>0.03381459</beam_line_coefficient_a>
+        <beam_line_coefficient_b>0.20912004</beam_line_coefficient_b>
+    </laser>
+</lasers>

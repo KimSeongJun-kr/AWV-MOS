@@ -1,0 +1,25 @@
+<launch>
+    <arg name="use_bag_file" default="false" />
+    <arg name="path_to_sequences" default="path/to/sequences" />
+    <arg name="sequence" default="00" />
+    <arg name="config_file_name" default="your_config_file_name.yaml"/>
+
+    <arg name="m_config_file_path" default="$(find awv_mos)/config/$(arg config_file_name)"/>
+    <!-- Parameters -->
+    <param name="use_bag_file" value="false" />
+    <param name="prediction_write_path" value="$(find awv_mos)/history/predictions/kitti_mapping/sequences/$(arg sequence)/predictions/" />
+    <param name="map_save_path" value="$(find awv_mos)/history/maps/kitti/" />
+    <param name="scan_folder_path" value="$(arg path_to_sequences)/$(arg sequence)/velodyne/" />
+    <param name="label_folder_path" value="$(arg path_to_sequences)/$(arg sequence)/labels/" />
+    <param name="poses_file_path" value="$(arg path_to_sequences)/$(arg sequence)/poses.txt" />
+    <param name="times_file_path" value="$(arg path_to_sequences)/$(arg sequence)/times.txt" />
+    <param name="calib_file_path" value="$(arg path_to_sequences)/$(arg sequence)/calib.txt" />
+    <param name="m_config_file_path" value="$(arg m_config_file_path)" />
+    <param name="m_log_write_folder_path" value="$(find awv_mos)/history/log/"/>
+    <rosparam file="$(arg m_config_file_path)" command="load" />
+
+    <!-- AWV-MOS static mapping -->
+    <node pkg="awv_mos" type="run_static_mapping" name="run_static_mapping" output="screen" respawn="false"/>
+
+    <node pkg="rviz" type="rviz" name="awv_mos_rviz" args="-d $(find awv_mos)/config/rviz/scan_view.rviz" />
+</launch>
