@@ -65,6 +65,9 @@ link_directories(
   ${TBB_LIBRARY_DIRS}
 )
 
+add_library(awv_mos src/AWV_MOS.cpp)
+target_link_libraries(awv_mos ${catkin_LIBRARIES} ${PCL_LIBRARIES} TBB::tbb)
+
 # Online mos AWV_MOS alone
 add_executable(run_online_mos 
   src/run_online_mos.cpp

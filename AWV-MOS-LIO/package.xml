@@ -53,4 +53,8 @@
   
   <build_depend>opencv2</build_depend>
   <run_depend>opencv2</run_depend>
+
+  <build_depend>awv_mos</build_depend>
+  <run_depend>awv_mos</run_depend>
+
 </package>

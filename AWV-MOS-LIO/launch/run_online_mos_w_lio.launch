@@ -1,9 +1,10 @@
 <launch>
-    <arg name="m_config_file_path" default="$(find awv_mos_lio)/config/params_custom.yaml"/>
-
+    <arg name="config_file_name" default="your_config_file_name.yaml"/>
+    
+    <arg name="m_config_file_path" default="$(find awv_mos_lio)/config/$(arg config_file_name)"/>
     <!-- Parameters -->
     <param name="m_config_file_path" value="$(arg m_config_file_path)" />
-    <param name="m_log_write_path" value="$(find awv_mos_lio)/history/log/" />
+    <param name="m_log_write_folder_path" value="$(find awv_mos_lio)/history/log/" />
     <rosparam file="$(arg m_config_file_path)" command="load" />
 
     <!-- AWV-MOS-LIO -->

@@ -497,11 +497,17 @@ int main(int argc, char** argv)
     if(!nhPrivate.getParam("/mos_evaluation/bag_file_path", bag_file_path)){{ROS_WARN("Fail to get param - bag_file_path");}};
     if(!nhPrivate.getParam("/mos_evaluation/use_label_file", use_label_file)){{ROS_WARN("Fail to get param - use_label_file");}};
     if(!nhPrivate.getParam("/mos_evaluation/gt_label_folder_path", gt_label_folder_path)){{ROS_WARN("Fail to get param - gt_label_folder_path");}};
+    if (!gt_label_folder_path.empty() && gt_label_folder_path.back() != '/')
+        gt_label_folder_path += '/';
     if(!nhPrivate.getParam("/mos_evaluation/pred_label_folder_path", pred_label_folder_path)){{ROS_WARN("Fail to get param - pred_label_folder_path");}};
+    if (!pred_label_folder_path.empty() && pred_label_folder_path.back() != '/')
+        pred_label_folder_path += '/';
     if(!nhPrivate.getParam("/mos_evaluation/start_frame", start_frame)){{ROS_WARN("Fail to get param - start_frame");}};
     if(!nhPrivate.getParam("/mos_evaluation/end_frame", end_frame)){{ROS_WARN("Fail to get param - end_frame");}};
     if(!nhPrivate.getParam("/mos_evaluation/scan_topic", scan_topic)){{ROS_WARN("Fail to get param - scan_topic");}};
     if(!nhPrivate.getParam("/mos_evaluation/result_folder_path", result_folder_path)){{ROS_WARN("Fail to get param - result_folder_path");}};
+    if (!result_folder_path.empty() && result_folder_path.back() != '/')
+        result_folder_path += '/';
 
     // Set dictionary to write results
     std::unordered_map<std::string, std::vector<std::pair<int, float>>> eval_dict;

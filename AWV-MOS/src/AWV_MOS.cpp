@@ -1,76 +1,77 @@
-#include "AWV_MOS.h"
+#include "AWV_MOS.hpp"
 
 AWV_MOS::AWV_MOS()
 {
-        // AWV_MOS config Params       
-        // - Topic namespace
-        nh.param<std::string>("awv_mos/m_cfg_s_output_pc_namespace", m_cfg_s_output_pc_namespace, "/awv_mos/mos_pc");
-        // - LiDAR characteristic params
-        nh.param<float>("awv_mos/m_cfg_f_lidar_horizontal_resolution_deg", m_cfg_f_lidar_horizontal_resolution_deg, -1);
-        nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_resolution_deg", m_cfg_f_lidar_vertical_resolution_deg, -1);
-        nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_fov_upper_bound_deg", m_cfg_f_lidar_vertical_fov_upper_bound_deg, -1);
-        nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_fov_lower_bound_deg", m_cfg_f_lidar_vertical_fov_lower_bound_deg, -1);
-        // - Prior MOS update option
-        nh.param<bool>("awv_mos/m_cfg_b_use_prior_mos", m_cfg_b_use_prior_mos, false);
-        nh.param<float>("awv_mos/m_cfg_f_imu_odom_trans_err_std_m", m_cfg_f_imu_odom_trans_err_std_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_imu_odom_rot_err_std_rad", m_cfg_f_imu_odom_rot_err_std_rad, -1);
-        // - Reference frame params
-        nh.param<float>("awv_mos/m_cfg_f_keyframe_translation_threshold_m", m_cfg_f_keyframe_translation_threshold_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_keyframe_rotation_threshold_rad", m_cfg_f_keyframe_rotation_threshold_rad, -1);
-        nh.param<float>("awv_mos/m_cfg_f_keyframe_time_threshold_s", m_cfg_f_keyframe_time_threshold_s, -1);
-        nh.param<bool>("awv_mos/m_cfg_b_use_ref_frame_instant_charge", m_cfg_b_use_ref_frame_instant_charge, false);
-        nh.param<int>("awv_mos/m_cfg_n_mos_ref_frame_size", m_cfg_n_mos_ref_frame_size, -1);
-        // - Point-to-window comparision params
-        nh.param<float>("awv_mos/m_cfg_f_meas_range_std_m", m_cfg_f_meas_range_std_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_meas_theta_std_rad", m_cfg_f_meas_theta_std_rad, -1);
-        nh.param<float>("awv_mos/m_cfg_f_meas_phi_std_rad", m_cfg_f_meas_phi_std_rad, -1);
-        nh.param<float>("awv_mos/m_cfg_f_scan_matching_trans_err_std_m", m_cfg_f_scan_matching_trans_err_std_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_scan_matching_rot_err_std_rad", m_cfg_f_scan_matching_rot_err_std_rad, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_u_angle_deg_min", m_cfg_f_range_image_observation_window_u_angle_deg_min, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_u_angle_deg_max", m_cfg_f_range_image_observation_window_u_angle_deg_max, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_v_angle_deg_min", m_cfg_f_range_image_observation_window_v_angle_deg_min, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_v_angle_deg_max", m_cfg_f_range_image_observation_window_v_angle_deg_max, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_z_correction", m_cfg_f_range_image_z_correction, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_min_dist_m", m_cfg_f_range_image_min_dist_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_min_height_m", m_cfg_f_range_image_min_height_m, -1);
-        nh.param<bool>("awv_mos/m_cfg_b_use_range_image_noise_filtering", m_cfg_b_use_range_image_noise_filtering, false);
-        nh.param<float>("awv_mos/m_cfg_f_range_image_noise_filtering_min_diff_m", m_cfg_f_range_image_noise_filtering_min_diff_m, -1);
-        // - Motion belief calculation params
-        nh.param<float>("awv_mos/m_cfg_f_moving_confidence", m_cfg_f_moving_confidence, -1);
-        nh.param<float>("awv_mos/m_cfg_f_static_confidence", m_cfg_f_static_confidence, -1);
-        // - Object Scale Test params
-        nh.param<bool>("awv_mos/m_cfg_b_use_object_scale_test", m_cfg_b_use_object_scale_test, false);
-        nh.param<float>("awv_mos/m_cfg_f_object_scale_test_valid_visible_range_m", m_cfg_f_object_scale_test_valid_visible_range_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_object_scale_test_min_height_m", m_cfg_f_object_scale_test_min_height_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_object_scale_test_min_visible_area_m2", m_cfg_f_object_scale_test_min_visible_area_m2, -1);
-        nh.param<float>("awv_mos/m_cfg_f_object_scale_test_point_search_radius_m", m_cfg_f_object_scale_test_point_search_radius_m, -1);
-        // - Region Growing params
-        nh.param<bool>("awv_mos/m_cfg_b_use_region_growing", m_cfg_b_use_region_growing, false);
-        nh.param<float>("awv_mos/m_cfg_f_region_growing_voxel_leaf_size_m", m_cfg_f_region_growing_voxel_leaf_size_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_region_growing_max_iteration", m_cfg_f_region_growing_max_iteration, -1);
-        nh.param<float>("awv_mos/m_cfg_f_region_growing_point_search_radius_m", m_cfg_f_region_growing_point_search_radius_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_region_growing_ground_filter_height_m", m_cfg_f_region_growing_ground_filter_height_m, -1);
-        // - Scan maching weight param
-        nh.param<float>("awv_mos/m_cfg_f_static_weight_ratio", m_cfg_f_static_weight_ratio, -1);
-        // - ROS msg publish params 
-        nh.param<bool>("awv_mos/m_cfg_b_publish_pc", m_cfg_b_publish_pc, false);
-        // - CPU Params
-        nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
-        // - Prediction write
-        nh.param<bool>("awv_mos/m_cfg_b_use_prediction_write", m_cfg_b_use_prediction_write, false);
-        // - Mapping
-        nh.param<int>("awv_mos/m_cfg_i_mapping_start_frame_limit", m_cfg_i_mapping_start_frame_limit, -1);
-        nh.param<int>("awv_mos/m_cfg_i_mapping_end_frame_limit", m_cfg_i_mapping_end_frame_limit, -1);
-        nh.param<bool>("awv_mos/m_cfg_b_mapping_use_save_map", m_cfg_b_mapping_use_save_map, false);
-        nh.param<bool>("awv_mos/m_cfg_b_mapping_use_only_keyframes", m_cfg_b_mapping_use_only_keyframes, false);
-        nh.param<bool>("awv_mos/m_cfg_b_mapping_use_mos_backward_update", m_cfg_b_mapping_use_mos_backward_update, false);
-        nh.param<float>("awv_mos/m_cfg_f_mapping_section_division_length_m", m_cfg_f_mapping_section_division_length_m, -1);
-        nh.param<float>("awv_mos/m_cfg_f_mapping_voxel_leaf_size_m", m_cfg_f_mapping_voxel_leaf_size_m, -1);
-        nh.param<bool>("awv_mos/m_cfg_b_mapping_use_visualization", m_cfg_b_mapping_use_visualization, false);
+    // AWV_MOS config Params       
+    // - Topic namespace
+    nh.param<std::string>("awv_mos/m_cfg_s_output_pc_namespace", m_cfg_s_output_pc_namespace, "/awv_mos/mos_pc");
+    // - LiDAR characteristic params
+    nh.param<float>("awv_mos/m_cfg_f_lidar_horizontal_resolution_deg", m_cfg_f_lidar_horizontal_resolution_deg, -1);
+    nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_resolution_deg", m_cfg_f_lidar_vertical_resolution_deg, -1);
+    nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_fov_upper_bound_deg", m_cfg_f_lidar_vertical_fov_upper_bound_deg, -1);
+    nh.param<float>("awv_mos/m_cfg_f_lidar_vertical_fov_lower_bound_deg", m_cfg_f_lidar_vertical_fov_lower_bound_deg, -1);
+    // - Prior MOS update option
+    nh.param<bool>("awv_mos/m_cfg_b_use_prior_mos", m_cfg_b_use_prior_mos, false);
+    nh.param<float>("awv_mos/m_cfg_f_imu_odom_trans_err_std_m", m_cfg_f_imu_odom_trans_err_std_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_imu_odom_rot_err_std_rad", m_cfg_f_imu_odom_rot_err_std_rad, -1);
+    // - Reference frame params
+    nh.param<float>("awv_mos/m_cfg_f_keyframe_translation_threshold_m", m_cfg_f_keyframe_translation_threshold_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_keyframe_rotation_threshold_rad", m_cfg_f_keyframe_rotation_threshold_rad, -1);
+    nh.param<float>("awv_mos/m_cfg_f_keyframe_time_threshold_s", m_cfg_f_keyframe_time_threshold_s, -1);
+    nh.param<bool>("awv_mos/m_cfg_b_use_ref_frame_instant_charge", m_cfg_b_use_ref_frame_instant_charge, false);
+    nh.param<int>("awv_mos/m_cfg_n_mos_ref_frame_size", m_cfg_n_mos_ref_frame_size, -1);
+    // - Point-to-window comparision params
+    nh.param<float>("awv_mos/m_cfg_f_meas_range_std_m", m_cfg_f_meas_range_std_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_meas_theta_std_rad", m_cfg_f_meas_theta_std_rad, -1);
+    nh.param<float>("awv_mos/m_cfg_f_meas_phi_std_rad", m_cfg_f_meas_phi_std_rad, -1);
+    nh.param<float>("awv_mos/m_cfg_f_scan_matching_trans_err_std_m", m_cfg_f_scan_matching_trans_err_std_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_scan_matching_rot_err_std_rad", m_cfg_f_scan_matching_rot_err_std_rad, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_u_angle_deg_min", m_cfg_f_range_image_observation_window_u_angle_deg_min, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_u_angle_deg_max", m_cfg_f_range_image_observation_window_u_angle_deg_max, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_v_angle_deg_min", m_cfg_f_range_image_observation_window_v_angle_deg_min, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_observation_window_v_angle_deg_max", m_cfg_f_range_image_observation_window_v_angle_deg_max, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_z_correction", m_cfg_f_range_image_z_correction, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_min_dist_m", m_cfg_f_range_image_min_dist_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_min_height_m", m_cfg_f_range_image_min_height_m, -1);
+    nh.param<bool>("awv_mos/m_cfg_b_use_range_image_noise_filtering", m_cfg_b_use_range_image_noise_filtering, false);
+    nh.param<float>("awv_mos/m_cfg_f_range_image_noise_filtering_min_diff_m", m_cfg_f_range_image_noise_filtering_min_diff_m, -1);
+    // - Motion belief calculation params
+    nh.param<float>("awv_mos/m_cfg_f_moving_confidence", m_cfg_f_moving_confidence, -1);
+    nh.param<float>("awv_mos/m_cfg_f_static_confidence", m_cfg_f_static_confidence, -1);
+    // - Object Scale Test params
+    nh.param<bool>("awv_mos/m_cfg_b_use_object_scale_test", m_cfg_b_use_object_scale_test, false);
+    nh.param<float>("awv_mos/m_cfg_f_object_scale_test_valid_visible_range_m", m_cfg_f_object_scale_test_valid_visible_range_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_object_scale_test_min_height_m", m_cfg_f_object_scale_test_min_height_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_object_scale_test_min_visible_area_m2", m_cfg_f_object_scale_test_min_visible_area_m2, -1);
+    nh.param<float>("awv_mos/m_cfg_f_object_scale_test_point_search_radius_m", m_cfg_f_object_scale_test_point_search_radius_m, -1);
+    // - Region Growing params
+    nh.param<bool>("awv_mos/m_cfg_b_use_region_growing", m_cfg_b_use_region_growing, false);
+    nh.param<float>("awv_mos/m_cfg_f_region_growing_voxel_leaf_size_m", m_cfg_f_region_growing_voxel_leaf_size_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_region_growing_max_iteration", m_cfg_f_region_growing_max_iteration, -1);
+    nh.param<float>("awv_mos/m_cfg_f_region_growing_point_search_radius_m", m_cfg_f_region_growing_point_search_radius_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_region_growing_ground_filter_height_m", m_cfg_f_region_growing_ground_filter_height_m, -1);
+    // - Scan maching weight param
+    nh.param<float>("awv_mos/m_cfg_f_static_weight_ratio", m_cfg_f_static_weight_ratio, -1);
+    // - ROS msg publish params 
+    nh.param<bool>("awv_mos/m_cfg_b_publish_pc", m_cfg_b_publish_pc, false);
+    // - CPU Params
+    nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
+    // - Prediction write
+    nh.param<bool>("awv_mos/m_cfg_b_use_prediction_write", m_cfg_b_use_prediction_write, false);
+    // - Mapping
+    nh.param<int>("awv_mos/m_cfg_i_mapping_start_frame_limit", m_cfg_i_mapping_start_frame_limit, -1);
+    nh.param<int>("awv_mos/m_cfg_i_mapping_end_frame_limit", m_cfg_i_mapping_end_frame_limit, -1);
+    nh.param<bool>("awv_mos/m_cfg_b_mapping_use_save_map", m_cfg_b_mapping_use_save_map, false);
+    nh.param<bool>("awv_mos/m_cfg_b_mapping_use_only_keyframes", m_cfg_b_mapping_use_only_keyframes, false);
+    nh.param<bool>("awv_mos/m_cfg_b_mapping_use_mos_backward_update", m_cfg_b_mapping_use_mos_backward_update, false);
+    nh.param<float>("awv_mos/m_cfg_f_mapping_section_division_length_m", m_cfg_f_mapping_section_division_length_m, -1);
+    nh.param<float>("awv_mos/m_cfg_f_mapping_voxel_leaf_size_m", m_cfg_f_mapping_voxel_leaf_size_m, -1);
+    nh.param<bool>("awv_mos/m_cfg_b_mapping_use_visualization", m_cfg_b_mapping_use_visualization, false);
 
-        if (!nh.getParam("m_config_file_path", m_config_file_path)){ROS_WARN("Fail to get param - m_config_file_path");}
-        if (!nh.getParam("m_log_write_path", m_log_write_path)){ROS_WARN("Fail to get param - m_log_write_path");}
-
+    if (!nh.getParam("m_config_file_path", m_config_file_path)){ROS_WARN("Fail to get param - m_config_file_path");}
+    if (!nh.getParam("m_log_write_folder_path", m_log_write_folder_path)){ROS_WARN("Fail to get param - m_log_write_folder_path");}
+    if (!m_log_write_folder_path.empty() && m_log_write_folder_path.back() != '/')
+        m_log_write_folder_path += '/';
 
     float vertical_fov = m_cfg_f_lidar_vertical_fov_upper_bound_deg - m_cfg_f_lidar_vertical_fov_lower_bound_deg;
 	m_num_range_image_cols = (int)(360. / m_cfg_f_lidar_horizontal_resolution_deg) + 1;
@@ -308,7 +309,7 @@ void AWV_MOS::SaveConfigParams()
         config_file_name = m_config_file_path;
 
     std::string config_log_file_name = ss.str() + config_file_name;
-    std::string config_log_file_path = m_log_write_path + config_log_file_name;
+    std::string config_log_file_path = m_log_write_folder_path + config_log_file_name;
 
     std::ifstream config_src(m_config_file_path, std::ios::binary);
     std::ofstream config_dst(config_log_file_path, std::ios::binary);

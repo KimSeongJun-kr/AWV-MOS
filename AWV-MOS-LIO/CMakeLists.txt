@@ -24,6 +24,7 @@ find_package(catkin REQUIRED COMPONENTS
   visualization_msgs
   rosbag 
   image_transport
+  awv_mos
 )
 
 find_package(TBB REQUIRED COMPONENTS tbb)
@@ -51,7 +52,6 @@ generate_messages(
 )
 
 catkin_package(
-  INCLUDE_DIRS include
   DEPENDS PCL GTSAM
 
   CATKIN_DEPENDS
@@ -64,6 +64,7 @@ catkin_package(
   message_runtime
   message_generation
   visualization_msgs
+  awv_mos
 )
 
 # include directories
@@ -86,9 +87,9 @@ link_directories(
 )
 
 # Mapping Optimization
-add_executable(${PROJECT_NAME}_mapOptmization src/mapOptmization.cpp src/AWV_MOS.cpp)
+add_executable(${PROJECT_NAME}_mapOptmization src/mapOptmization.cpp)
 add_dependencies(${PROJECT_NAME}_mapOptmization ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_generate_messages_cpp)
-target_link_libraries(${PROJECT_NAME}_mapOptmization ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES} gtsam TBB::tbb)
+target_link_libraries(${PROJECT_NAME}_mapOptmization ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBRARIES} gtsam TBB::tbb awv_mos)
 
 # Feature Association
 add_executable(${PROJECT_NAME}_FeatureExtractionModule src/FeatureExtractionModule.cpp)

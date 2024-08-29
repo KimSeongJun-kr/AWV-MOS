@@ -1,4 +1,4 @@
-#include "AWV_MOS.h"
+#include "AWV_MOS.hpp"
 #include <filesystem>
 #include <termios.h>
 #include <unistd.h>
@@ -576,7 +576,7 @@ bool ReadDatasFromBag(AWV_MOS& i_awv_mos,
 
     if(poses.size() <= 0)
     {
-        std::cout << "No poses in bag file. odom_topic: " << i_odom_topic << "\n";
+        std::cout << "No poses in bag file. pose_topic: " << i_odom_topic << "\n";
         return false;
     }
     std::cout << "Read odoms from bag file done. poses size: " << poses.size() << "\n";
@@ -786,25 +786,27 @@ int main(int argc, char** argv)
     awv_mos.SaveConfigParams();
 
     ros::NodeHandle nh;
-    bool use_bag_file, use_prediction_write, use_map_save, use_deskewing;
-    std::string bag_file_path, scan_topic, odom_topic, prediction_write_path, map_save_path, scan_folder_path, label_folder_path, poses_file_path, times_file_path, calib_file_path;
+    bool use_bag_file, use_deskewing;
+    std::string bag_file_path, scan_topic, pose_topic, prediction_write_path, map_save_path, scan_folder_path, label_folder_path, poses_file_path, times_file_path, calib_file_path;
     if (!nh.getParam("use_bag_file", use_bag_file)){ROS_WARN("Fail to get param - use_bag_file");}
-    if (!nh.getParam("use_prediction_write", use_prediction_write)){ROS_WARN("Fail to get param - use_prediction_write");}
     if (!nh.getParam("prediction_write_path", prediction_write_path)){ROS_WARN("Fail to get param - prediction_write_path");}
-    if (!nh.getParam("use_map_save", use_map_save)){ROS_WARN("Fail to get param - use_map_save");}
     if (!nh.getParam("map_save_path", map_save_path)){ROS_WARN("Fail to get param - map_save_path");}
     if(use_bag_file == true)
     {
         if (!nh.getParam("bag_file_path", bag_file_path)){ROS_WARN("Fail to get param - bag_file_path");}
         if (!nh.getParam("scan_topic", scan_topic)){ROS_WARN("Fail to get param - scan_topic");}
-        if (!nh.getParam("odom_topic", odom_topic)){ROS_WARN("Fail to get param - odom_topic");}
+        if (!nh.getParam("pose_topic", pose_topic)){ROS_WARN("Fail to get param - pose_topic");}
         if (!nh.getParam("use_deskewing", use_deskewing)){ROS_WARN("Fail to get param - use_deskewing");}
         if (!nh.getParam("calib_file_path", calib_file_path)){ROS_WARN("Fail to get param - calib_file_path");}
     }
     else
     {
         if (!nh.getParam("scan_folder_path", scan_folder_path)){ROS_WARN("Fail to get param - scan_folder_path");}
+        if (!scan_folder_path.empty() && scan_folder_path.back() != '/')
+            scan_folder_path += '/';
         if (!nh.getParam("label_folder_path", label_folder_path)){ROS_WARN("Fail to get param - label_folder_path");}
+        if (!label_folder_path.empty() && label_folder_path.back() != '/')
+            label_folder_path += '/';
         if (!nh.getParam("poses_file_path", poses_file_path)){ROS_WARN("Fail to get param - poses_file_path");}
         if (!nh.getParam("times_file_path", times_file_path)){ROS_WARN("Fail to get param - times_file_path");}
         if (!nh.getParam("calib_file_path", calib_file_path)){ROS_WARN("Fail to get param - calib_file_path");}
@@ -828,7 +830,7 @@ int main(int argc, char** argv)
                             calib_file_path,
                             bag_file_path, 
                             scan_topic, 
-                            odom_topic,
+                            pose_topic,
                             use_deskewing, 
                             scans,
                             poses,

@@ -112,4 +112,4 @@ awv_mos:
   m_cfg_b_publish_pc: true
 
   # - CPU Params
-  m_cfg_n_num_cpu_cores: 24
+  m_cfg_n_num_cpu_cores: 0      # 0: use all cores

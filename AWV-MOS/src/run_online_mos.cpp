@@ -1,4 +1,4 @@
-#include "AWV_MOS.h"
+#include "AWV_MOS.hpp"
 #include <filesystem>
 #include <queue>
 
@@ -80,15 +80,13 @@ int main(int argc, char** argv)
     AWV_MOS awv_mos;
     awv_mos.SaveConfigParams();
     
-    bool use_prediction_write;
-    std::string prediction_write_path, scan_topic, odom_topic;
-    if (!nh.getParam("use_prediction_write", use_prediction_write)){ROS_WARN("Fail to get param - use_prediction_write");}
+    std::string prediction_write_path, scan_topic, pose_topic;
     if (!nh.getParam("prediction_write_path", prediction_write_path)){ROS_WARN("Fail to get param - prediction_write_path");}
     if (!nh.getParam("scan_topic", scan_topic)){ROS_WARN("Fail to get param - scan_topic");}
-    if (!nh.getParam("odom_topic", odom_topic)){ROS_WARN("Fail to get param - odom_topic");}
+    if (!nh.getParam("pose_topic", pose_topic)){ROS_WARN("Fail to get param - pose_topic");}
 
     ros::Subscriber pc_sub = nh.subscribe<sensor_msgs::PointCloud2>(scan_topic, 10000, ScanCallback);
-    ros::Subscriber pose_sub = nh.subscribe<nav_msgs::Odometry>(odom_topic, 10000, OdomCallback);
+    ros::Subscriber pose_sub = nh.subscribe<nav_msgs::Odometry>(pose_topic, 10000, OdomCallback);
 
     ros::Publisher pub_segmented_query_scan_all = nh.advertise<sensor_msgs::PointCloud2>(awv_mos.m_cfg_s_output_pc_namespace + std::string("/segmented_query_scan_all"), 100);
     ros::Publisher pub_segmented_query_scan_static = nh.advertise<sensor_msgs::PointCloud2>(awv_mos.m_cfg_s_output_pc_namespace + std::string("/segmented_query_scan_static"), 100);

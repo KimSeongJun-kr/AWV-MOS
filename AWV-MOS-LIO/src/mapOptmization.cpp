@@ -34,7 +34,7 @@
 #include <sensor_msgs/PointCloud2.h>
 
 // Include for MOS
-#include "AWV_MOS.h"
+#include <AWV_MOS.hpp>
 #include <filesystem>
 
 #include <tbb/parallel_for.h>
@@ -109,31 +109,11 @@ using PointTypePose = PointXYZIRPYT;
 
 using namespace gtsam;
 
-using symbol_shorthand::X; // Pose3 (x,y,z,r,p,y)
-using symbol_shorthand::V; // Vel   (xdot,ydot,zdot)
-using symbol_shorthand::B; // Bias  (ax,ay,az,gx,gy,gz)
-using symbol_shorthand::G; // GPS pose
-
-static std::mutex m_mutexMotion;
 static std::mutex m_mutexInputPointCloud;
-static std::mutex m_mutexPosePointCloud;
-
-static std::thread m_threadMotion;
-static std::thread m_threadOutput;
 
 class mapOptimization
 {
 public:
-    bool m_bShutDown = false;
-
-    // gtsam
-    NonlinearFactorGraph gtSAMgraph;
-    Values initialEstimate;
-    Values optimizedEstimate;
-    ISAM2 *isam;
-    Values isamCurrentEstimate;
-    Eigen::MatrixXd poseCovariance;
-
     ros::Publisher pubLaserCloudSurround;
     ros::Publisher pubLaserOdometryGlobal;
     ros::Publisher pubLaserOdometryIncremental;
@@ -142,35 +122,24 @@ public:
     ros::Publisher m_pubSrroundKeyPoses;
     ros::Publisher pubPath;
 
-    ros::Publisher pubHistoryKeyFrames;
-    ros::Publisher pubIcpKeyFrames;
     ros::Publisher pubRecentKeyFrames;
     ros::Publisher pubRecentKeyFrame;
     ros::Publisher pubCloudRegisteredRaw;
-    ros::Publisher pubLoopConstraintEdge;
 
     ros::Publisher pubSLAMInfo;
 
     ros::Subscriber subCloud;
-    ros::Subscriber subGPS;
-    ros::Subscriber subLoop;
 
-    ros::ServiceServer srvSaveMap;
-
-    std::deque<nav_msgs::Odometry> gpsQueue;
     awv_mos_lio::cloud_info cloudInfo;
     std::deque<awv_mos_lio::cloud_info> m_vec_cloud_info_queue;
 
-    vector<pcl::PointCloud<PointTypeMOS>::Ptr> cornerCloudKeyFrames;
-    vector<pcl::PointCloud<PointTypeMOS>::Ptr> surfCloudKeyFrames;
-    vector<pcl::PointCloud<PointTypeMOS>::Ptr> CloudKeyFrames;
-    vector<int> index_of_keyframes;
+    std::vector<pcl::PointCloud<PointTypeMOS>::Ptr> cornerCloudKeyFrames;
+    std::vector<pcl::PointCloud<PointTypeMOS>::Ptr> surfCloudKeyFrames;
+    std::vector<pcl::PointCloud<PointTypeMOS>::Ptr> CloudKeyFrames;
     
     pcl::PointCloud<PointType>::Ptr cloudKeyPoses3D;
     pcl::PointCloud<PointType>::Ptr m_surroundingKeyPoses;
     pcl::PointCloud<PointTypePose>::Ptr cloudKeyPoses6D;
-    pcl::PointCloud<PointType>::Ptr copy_cloudKeyPoses3D;
-    pcl::PointCloud<PointTypePose>::Ptr copy_cloudKeyPoses6D;
 
     pcl::PointCloud<PointTypeMOS>::Ptr laserCloudCornerLast; // corner feature set from odoOptimization
     pcl::PointCloud<PointTypeMOS>::Ptr laserCloudSurfLast; // surf feature set from odoOptimization
@@ -199,8 +168,6 @@ public:
     pcl::KdTreeFLANN<PointTypeMOS>::Ptr kdtreeCornerFromMap;
     pcl::KdTreeFLANN<PointTypeMOS>::Ptr kdtreeSurfFromMap;
 
-    pcl::KdTreeFLANN<PointType>::Ptr kdtreeSurroundingKeyPoses;
-    pcl::KdTreeFLANN<PointType>::Ptr kdtreeHistoryKeyPoses;
 
     pcl::VoxelGrid<PointTypeMOS> downSizeFilterCorner;
     pcl::VoxelGrid<PointTypeMOS> downSizeFilterSurf;
@@ -237,7 +204,6 @@ public:
 
     // MOS Class
     AWV_MOS m_awv_mos;
-    std::string m_prediction_write_folder_path;
 
     // TF
     Eigen::Affine3f m_tf_scan_initial_to_map;
@@ -326,7 +292,6 @@ public:
         ISAM2Params parameters;
         parameters.relinearizeThreshold = 0.1;
         parameters.relinearizeSkip = 1;
-        isam = new ISAM2(parameters);
 
         pubKeyPoses                 = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/trajectory", 1);
         m_pubSrroundKeyPoses        = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/surround_key_poses", 1);
@@ -337,9 +302,6 @@ public:
         pubPath                     = nh.advertise<nav_msgs::Path>("lio_sam/mapping/path", 1);
 
         subCloud = nh.subscribe<awv_mos_lio::cloud_info>("lio_sam/feature/cloud_info", 100, &mapOptimization::laserCloudInfoHandler, this, ros::TransportHints().tcpNoDelay());
-
-        pubHistoryKeyFrames   = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/icp_loop_closure_history_cloud", 1);
-        pubIcpKeyFrames       = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/icp_loop_closure_corrected_cloud", 1);
 
         pubRecentKeyFrames    = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/map_local", 1);
         pubRecentKeyFrame     = nh.advertise<sensor_msgs::PointCloud2>("lio_sam/mapping/cloud_registered", 1);
@@ -366,21 +328,14 @@ public:
     }
 
     ~mapOptimization()
-    {
-        m_bShutDown = true;
-        m_threadOutput.join();
-    }
+    {}
 
     void allocateMemory()
     {
         cloudKeyPoses3D.reset(new pcl::PointCloud<PointType>());
         m_surroundingKeyPoses.reset(new pcl::PointCloud<PointType>());
         cloudKeyPoses6D.reset(new pcl::PointCloud<PointTypePose>());
-        copy_cloudKeyPoses3D.reset(new pcl::PointCloud<PointType>());
-        copy_cloudKeyPoses6D.reset(new pcl::PointCloud<PointTypePose>());
 
-        kdtreeSurroundingKeyPoses.reset(new pcl::KdTreeFLANN<PointType>());
-        kdtreeHistoryKeyPoses.reset(new pcl::KdTreeFLANN<PointType>());
 
         laserCloudCornerLast.reset(new pcl::PointCloud<PointTypeMOS>()); // corner feature set from odoOptimization
         laserCloudSurfLast.reset(new pcl::PointCloud<PointTypeMOS>()); // surf feature set from odoOptimization
@@ -1153,7 +1108,6 @@ public:
         thisPose6D.yaw   = transformTobeMapped[2];
         thisPose6D.time = timeLaserInfoCur;
         cloudKeyPoses6D->push_back(thisPose6D);
-        index_of_keyframes.push_back(m_i_frame_count - 1);
 
         // save path for visualization
         updatePath(thisPose6D);
@@ -1605,9 +1559,6 @@ public:
         duration = std::chrono::high_resolution_clock::now() - total_start_time;
         total_time_ms = duration.count();
         sum_total_time_ms += total_time_ms;
-
-        double sum_other_time_ms = sum_total_time_ms - sum_extract_keyframe_time_ms - sum_prior_mos_time_ms - sum_down_time_ms - sum_registration_time_ms - sum_segmentation_time_ms - sum_publish_time_ms;
-        double other_time_ms = total_time_ms - extract_keyframe_time_ms - prior_mos_time_ms - down_time_ms - registration_time_ms - segmentation_time_ms - publish_time_ms;
 
         int frame_id = m_i_frame_count - 1;
         std::cout << std::fixed << std::setprecision(3);

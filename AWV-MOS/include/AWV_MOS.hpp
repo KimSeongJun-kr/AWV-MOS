@@ -226,7 +226,7 @@ public:
     float m_cfg_f_mapping_voxel_leaf_size_m;
     bool m_cfg_b_mapping_use_visualization;
     // - Log write params
-    std::string m_log_write_path;
+    std::string m_log_write_folder_path;
     // config file path
     std::string m_config_file_path;
     std::string m_mos_config_file_path;

@@ -1,0 +1,19 @@
+<launch>
+    <arg name="scan_topic" default="your_scan_topic" />
+    <arg name="pose_topic" default="your_pose_topic" />
+    <arg name="config_file_name" default="your_config_file_name.yaml"/>
+
+    <arg name="m_config_file_path" default="$(find awv_mos)/config/$(arg config_file_name)"/>
+    <!-- Parameters -->
+    <param name="scan_topic" value="$(arg scan_topic)" />
+    <param name="pose_topic" value="$(arg pose_topic)" />
+    <param name="prediction_write_path" value="$(find awv_mos)/history/predictions/online_mos/custom/predictions/" />
+    <param name="m_config_file_path" value="$(arg m_config_file_path)" />
+    <param name="m_log_write_folder_path" value="$(find awv_mos)/history/log/" />
+    <rosparam file="$(arg m_config_file_path)" command="load" />
+
+    <!-- AWV-MOS online mos -->
+    <node pkg="awv_mos" type="run_online_mos"      name="run_online_mos"       output="screen"     respawn="false"/>
+
+    <node pkg="rviz" type="rviz" name="awv_mos_rviz" output="log" args="-d $(find awv_mos)/config/rviz/scan_view_nuscenes.rviz" />
+</launch>

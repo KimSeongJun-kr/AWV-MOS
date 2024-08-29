@@ -119,17 +119,4 @@ awv_mos:
   m_cfg_b_publish_pc: true
 
   # - CPU Params
-  m_cfg_n_num_cpu_cores: 24
-  
-  # - Prediction write
-  m_cfg_b_use_prediction_write: false
-
-  # - Mapping
-  m_cfg_i_mapping_start_frame_limit: -1
-  m_cfg_i_mapping_end_frame_limit: -1
-  m_cfg_b_mapping_use_save_map: true
-  m_cfg_b_mapping_use_only_keyframes: true
-  m_cfg_b_mapping_use_mos_backward_update: true
-  m_cfg_b_mapping_use_visualization: true
-  m_cfg_f_mapping_section_division_length_m: 100.0
-  m_cfg_f_mapping_voxel_leaf_size_m: 0.2
+  m_cfg_n_num_cpu_cores: 0      # 0: use all cores
