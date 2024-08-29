@@ -1,6 +1,6 @@
 # *AWV-MOS-LIO*
 AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry
-## 1.Introduction
+## 1. Introduction
 AWV-MOS is **a LiDAR Moving Object Segmentation module** for online MOS and static map construction with external pose data.  
 AWV-MOS-LIO is **a Online LiDAR Moving Object Segmentation system integrated with LiDAR Inertial Odometry**.  
 - This repository contains AWV-MOS package and AWV-MOS-LIO package.
@@ -10,14 +10,14 @@ AWV-MOS-LIO is **a Online LiDAR Moving Object Segmentation system integrated wit
 #### Online MOS demonstration video is available at [youtube](https://youtu.be/LbfhA7Kv76c)
 
 ### Table of Contents
-1. [Introduction](#1.-Introduction)
-2. [Requirements](#2.-Requirements)
-3. [Install](#3.-Install)
-4. [How to use](#4.-How-to-use)
-5. [Examples](#5.-Examples)
-6. [Evaluation](#6.-Evaluation)
-7. [Downloads](#7.-Downloads)
-8. [Citation](#8.-citation)
+1. [Introduction](#1-Introduction)
+2. [Requirements](#2-Requirements)
+3. [Install](#3-Install)
+4. [How to use](#4-How-to-use)
+5. [Examples](#5-Examples)
+6. [Evaluation](#6-Evaluation)
+7. [Downloads](#7-Downloads)
+8. [Citation](#8-citation)
 
 ## 2. Requirements
 - [Eigen](https://eigen.tuxfamily.org/dox/GettingStarted.html), [PCL](https://pointclouds.org/downloads/), [OpenCV](https://opencv.org/get-started/), [TBB](https://github.com/oneapi-src/oneTBB/blob/master/INSTALL.md), 
