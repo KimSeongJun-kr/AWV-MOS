@@ -90,7 +90,7 @@ $ roslaunch awv_mos run_static_mapping_kitti.launch path_to_sequences:=<path/to/
 ```
 
 ## 5. Examples
-Example datas can be downloaded at [Downloads](#Downloads)
+Example datas can be downloaded at 7. [Downloads](#7-Downloads)
 - Online MOS with LIO system on KITTI Raw dataset:  
 ```
 $ roslaunch awv_mos_lio run_online_mos_w_lio.launch config_file_name:=params_kitti.yaml
@@ -161,8 +161,8 @@ $ roslaunch awv_mos run_static_mapping_bag.launch bag_file_path:=s08_awv-mos-lio
 3. The evaluation result of the map will be printed during the mapping process.
 
 ## 7. Downloads
-- KITTI Raw dataset ROS Bag files used for paper experiments can be downloaded from [the NAS server](https://gofile.me/6Vvuz/njqrKwtxs)
-- The uploaded ROS bag files of KITTI Raw are generated using [kittiraw2bag](https://github.com/KimSeongJun-kr/kittiraw2bag.git), which generates scan messages that include the ring and time fields.
+- Experiment results and ROS bag, gt label files used for paper experiments can be downloaded from [the NAS server](https://gofile.me/6Vvuz/njqrKwtxs)
+- The uploaded KITTI Raw ROS bag files of KITTI Raw are generated using [kittiraw2bag](https://github.com/KimSeongJun-kr/kittiraw2bag.git), which generates scan messages that include the ring and time fields.
 
 ## 8. Citation
 - To be updated
