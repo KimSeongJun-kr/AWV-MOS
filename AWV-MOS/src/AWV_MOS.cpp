@@ -56,6 +56,9 @@ AWV_MOS::AWV_MOS()
     nh.param<bool>("awv_mos/m_cfg_b_publish_pc", m_cfg_b_publish_pc, false);
     // - CPU Params
     nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
+    if(m_cfg_n_num_cpu_cores <= 0)
+        m_cfg_n_num_cpu_cores = std::thread::hardware_concurrency();
+
     // - Prediction write
     nh.param<bool>("awv_mos/m_cfg_b_use_prediction_write", m_cfg_b_use_prediction_write, false);
     // - Mapping
@@ -96,6 +99,8 @@ void AWV_MOS::RunOnlineMOS(const pcl::PointCloud<PointTypeMOS>::Ptr& i_scan,
                         const bool& i_is_keyframe,
                         const bool& i_is_prior)
 {
+    static tbb::global_control global_limit(tbb::global_control::max_allowed_parallelism, m_cfg_n_num_cpu_cores);
+
     m_query_frame = SegmentMovingObject(i_scan, i_tf_frame_to_map, i_frame_id, i_time_s, i_is_keyframe, i_is_prior);
 
     if(m_cfg_b_use_object_scale_test)
@@ -111,6 +116,8 @@ void AWV_MOS::RunOnlineMOS(const pcl::PointCloud<PointTypeMOS>::Ptr& i_scan,
 
 void AWV_MOS::RunStaticMapping(const std::vector<pcl::PointCloud<PointTypeMOS>::Ptr>& i_scans, const std::vector<Eigen::Affine3f>& i_poses, const std::vector<int>& i_frames_id, const std::vector<double>& i_times, pcl::PointCloud<PointTypeMOS>::Ptr& o_static_map, pcl::PointCloud<PointTypeMOS>::Ptr& o_dynamic_map)
 {
+    static tbb::global_control global_limit(tbb::global_control::max_allowed_parallelism, m_cfg_n_num_cpu_cores);
+
     if(i_scans.size() != i_times.size() || i_poses.size() != i_times.size() || i_frames_id.size() != i_times.size())
         std::cout << "scans, poses, times size are not mached. scans size: " << i_scans.size() << ", poses size: " << i_poses.size() << ", times size: " << i_times.size() << ", frames id size: " << i_frames_id.size() << "\n";
 

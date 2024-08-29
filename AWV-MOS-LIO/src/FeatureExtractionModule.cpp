@@ -225,6 +225,9 @@ public:
     {
         // AWV-MOS param
         nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
+        nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
+        if(m_cfg_n_num_cpu_cores <= 0)
+            m_cfg_n_num_cpu_cores = std::thread::hardware_concurrency();
         // LIO-SAM param
         nh.param<std::string>("lio_sam/pointCloudTopic", pointCloudTopic, "points_raw");
         nh.param<std::string>("lio_sam/imuTopic", imuTopic, "imu_correct");
