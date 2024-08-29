@@ -272,6 +272,8 @@ public:
         nh.param<bool>("awv_mos/m_cfg_b_use_prior_mos", m_cfg_b_use_prior_mos, -1);
         nh.param<bool>("awv_mos/m_cfg_b_publish_pc", m_cfg_b_publish_pc, -1);
         nh.param<int>("awv_mos/m_cfg_n_num_cpu_cores", m_cfg_n_num_cpu_cores, -1);
+        if(m_cfg_n_num_cpu_cores <= 0)
+            m_cfg_n_num_cpu_cores = std::thread::hardware_concurrency();
 
         // LIO-SAM params
         nh.param<std::string>("lio_sam/lidarFrame", lidarFrame, "base_link");
