@@ -12,7 +12,7 @@
 
     <node pkg="awv_mos" type="mos_evaluation"      name="mos_evaluation"       output="screen">
         <param name="use_bag_file" value="$(arg use_bag_file)"/>
-        <param name="bag_file_path" value="$(arg bag_folder_path)$(arg bag_file_name)"/>
+        <param name="bag_file_path" value="$(arg bag_folder_path)/$(arg bag_file_name)"/>
         <param name="use_label_file" value="$(arg use_label_file)"/>
         <param name="gt_label_folder_path" value="$(arg gt_label_folder_path)"/>
         <param name="pred_label_folder_path" value="$(arg pred_label_folder_path)"/>
