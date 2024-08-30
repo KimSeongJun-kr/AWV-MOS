@@ -97,7 +97,7 @@ awv_mos:
 
   # - Object Scale Test params
   m_cfg_b_use_object_scale_test: true
-  m_cfg_f_object_scale_test_valid_visible_range_m: 7.0
+  m_cfg_f_object_scale_test_valid_visible_range_m: 3.0
   m_cfg_f_object_scale_test_min_height_m: 0.15
   m_cfg_f_object_scale_test_min_visible_area_m2: 0.135 
   m_cfg_f_object_scale_test_point_search_radius_m: 2.0

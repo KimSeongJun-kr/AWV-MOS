@@ -1415,22 +1415,8 @@ public:
     void MovingObjectSegmentation(const bool is_keyframe)
     {
         bool is_prior = false;
-        if(cloudInfo.odomAvailable == true)
-        {
-            m_awv_mos.RunOnlineMOS(m_pres_scanframe, m_tf_scan_increase_to_map, m_i_frame_count - 1, timeLaserInfoCur, is_keyframe, is_prior);
-            m_awv_mos.GetSegmentedScan(m_pres_segmented_scan);
-        }
-        else
-        {
-            m_pres_segmented_scan = m_pres_scanframe;
-            for (auto& point : m_pres_segmented_scan->points) 
-            {
-                point.r = 0;
-                point.g = 0;
-                point.b = 255;
-                point.a = 255;
-            }
-        }
+        m_awv_mos.RunOnlineMOS(m_pres_scanframe, m_tf_scan_increase_to_map, m_i_frame_count - 1, timeLaserInfoCur, is_keyframe, is_prior);
+        m_awv_mos.GetSegmentedScan(m_pres_segmented_scan);
 
         if(is_keyframe == true)
         {
