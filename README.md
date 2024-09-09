@@ -1,5 +1,6 @@
 # *AWV-MOS*
-AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry
+This is the implementation code for the paper, ["AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry"](https://doi.org/10.1109/TIV.2024.3446038), IEEE Transaction on Intelligent Vehicles, 2024.
+
 ## 1. Introduction
 AWV-MOS is **a LiDAR Moving Object Segmentation module** for online MOS and static map construction with external pose data.  
 AWV-MOS-LIO is **a Online LiDAR Moving Object Segmentation system integrated with LiDAR Inertial Odometry**.  
@@ -8,6 +9,7 @@ AWV-MOS-LIO is **a Online LiDAR Moving Object Segmentation system integrated wit
 - AWV-MOS-LIO package provides online MOS using integrated LIO system.
 - The dataset used for paper experiments and our results are provided from the NAS server.
 #### Online MOS demonstration video is available at [youtube](https://youtu.be/LbfhA7Kv76c)
+[![video title](./AWV-MOS/doc/demo_video_title.png)](https://youtu.be/LbfhA7Kv76c)
 
 ### Table of Contents
 1. [Introduction](#1-Introduction)
@@ -165,4 +167,15 @@ $ roslaunch awv_mos run_static_mapping_bag.launch bag_file_path:=s08_awv-mos-lio
 - The uploaded KITTI Raw ROS bag files of KITTI Raw are generated using [kittiraw2bag](https://github.com/KimSeongJun-kr/kittiraw2bag.git), which generates scan messages that include the ring and time fields.
 
 ## 8. Citation
-- To be updated
+```
+@ARTICLE{AWV-MOS-LIO,
+  author={Kim, Seongjun and Kim, Chansoo and Jo, Kichun},
+  journal={IEEE Transactions on Intelligent Vehicles}, 
+  title={AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-16},
+  keywords={Laser radar;Vehicle dynamics;Simultaneous localization and mapping;Odometry;Accuracy;Dynamics;Autonomous vehicles;LiDAR moving object segmentation;automated driving;point cloud processing;simultaneous localization and mapping (SLAM)},
+  doi={10.1109/TIV.2024.3446038}}
+```
