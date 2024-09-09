@@ -1,5 +1,5 @@
 # *AWV-MOS*
-This is the implementation code for the paper, ["AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry"](https://doi.org/10.1109/TIV.2024.3446038), IEEE Transaction on Intelligent Vehicles, 2024.
+This is the implementation code for the paper, ["AWV-MOS-LIO: Adaptive Window Visibility based Moving Object Segmentation with LiDAR Inertial Odometry"](https://doi.org/10.1109/TIV.2024.3446038), IEEE Transactions on Intelligent Vehicles (T-IV), 2024.
 
 ## 1. Introduction
 AWV-MOS is **a LiDAR Moving Object Segmentation module** for online MOS and static map construction with external pose data.  
