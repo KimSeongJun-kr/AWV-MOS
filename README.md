@@ -163,7 +163,7 @@ $ roslaunch awv_mos run_static_mapping_bag.launch bag_file_path:=s08_awv-mos-lio
 3. The evaluation result of the map will be printed during the mapping process.
 
 ## 7. Downloads
-- Experiment results and ROS bag, gt label files used for paper experiments can be downloaded from the [NAS server](https://gofile.me/6Vvuz/njqrKwtxs)
+- Experiment results and ROS bag, gt label files used for paper experiments can be downloaded from the [NAS server](https://gofile.me/6Vvuz/cxH5V0RaB)
 - The uploaded KITTI Raw ROS bag files of KITTI Raw are generated using [kittiraw2bag](https://github.com/KimSeongJun-kr/kittiraw2bag.git), which generates scan messages that include the ring and time fields.
 
 ## 8. Citation
